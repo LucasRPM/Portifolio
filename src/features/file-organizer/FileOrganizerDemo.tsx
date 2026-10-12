@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowLeft, 
-  Play, 
   RotateCcw, 
   Folder, 
   FileText, 
@@ -22,7 +21,6 @@ import {
   Trash2, 
   Wifi, 
   Volume2, 
-  Info, 
   Calculator, 
   Power,
   ChevronLeft,
@@ -30,17 +28,8 @@ import {
   Compass,
   Lightbulb,
   GripHorizontal,
-  Sparkles,
-  Layers,
   Cpu,
-  BarChart3,
-  Sliders,
-  AlertTriangle,
-  FolderTree,
-  Terminal,
-  Zap,
-  ArrowRight,
-  Check
+  Zap
 } from 'lucide-react';
 
 // Tipos de Arquivos

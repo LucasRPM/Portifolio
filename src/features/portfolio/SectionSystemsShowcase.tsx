@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppWindow, Sparkles, Wallet, ArrowUpRight, Folder, Kanban } from 'lucide-react';
+import { AppWindow, Wallet, ArrowUpRight, Folder, Kanban } from 'lucide-react';
 
 export const SectionSystemsShowcase: React.FC = () => {
   const openDemo = (hash: string) => {

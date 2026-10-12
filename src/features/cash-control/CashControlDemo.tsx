@@ -8,13 +8,11 @@ import {
   FileText, 
   Trash2, 
   Printer, 
-  CreditCard, 
   X,
   RotateCcw,
   Sparkles,
   TrendingUp,
   Search,
-  Filter,
   CheckCircle2,
   Calendar,
   DollarSign
