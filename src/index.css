@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    
+    /* Nova Identidade Visual - Paleta Vichy: Clean, Soft & Editorial */
+    --color-bg-white: #FFFFFF;
+    --color-bg-soft: #F8FAFA;
+    --color-bg-subtle: #F0F4F4;
+    
+    --color-gray-light: #BBBFBF;
+    --color-gray-border: #DDE2E2;
+    --color-gray-medium: #878787;
+    
+    --color-teal-primary: #05AD98;
+    --color-teal-hover: #049381;
+    --color-teal-light: #E6F7F5;
+    --color-teal-subtle: rgba(5, 173, 152, 0.12);
+    
+    --color-text-dark: #111827;
+    --color-text-muted: #6B7280;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  /* ========================================================================= */
+  /* APRESENTAÇÃO DE SLIDES POR SCROLL (SLIDE DECK STACKING)                  */
+  /* Cada seção desliza suavemente sobre a anterior como lâminas de slides   */
+  /* ========================================================================= */
+  @media (min-width: 1024px) {
+    .slide-deck-section {
+      position: sticky;
+      top: 4.5rem;
+      min-height: calc(100vh - 4.5rem);
+      will-change: transform;
+    }
+
+    .slide-deck-1 { z-index: 10; }
+    .slide-deck-2 { z-index: 15; }
+    .slide-deck-3 { z-index: 20; }
+    .slide-deck-4 { z-index: 25; }
+    .slide-deck-5 { z-index: 30; }
+  }
+
+  /* Efeito sutil de transformação de perspectiva do slide durante a transição */
+  @supports (animation-timeline: view()) {
+    @media (min-width: 1024px) {
+      .slide-deck-content {
+        animation: slideDeckContentTransform linear both;
+        animation-timeline: view();
+        animation-range: exit 0% exit 100%;
+        transform-origin: center top;
+      }
+    }
+  }
+
+  @keyframes slideDeckContentTransform {
+    to {
+      opacity: 0.65;
+      transform: scale(0.97) translateY(-14px);
+      filter: blur(0.5px);
+    }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FFFFFF;
+    color: #111827;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFFFFF;
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Padrão sutil e soft de fundo editorial */
+.bg-subtle-mesh {
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(5, 173, 152, 0.04) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(187, 191, 191, 0.12) 0px, transparent 50%);
+}
+
+.bg-clean-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(187, 191, 191, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(187, 191, 191, 0.25) 1px, transparent 1px);
+}
+
+/* Card e containers suaves */
+.soft-card {
+  background-color: #FFFFFF;
+  border: 1px solid #DDE2E2;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(17, 24, 39, 0.03), 0 2px 6px -1px rgba(17, 24, 39, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.soft-card:hover {
+  border-color: #05AD98;
+  box-shadow: 0 12px 30px -4px rgba(5, 173, 152, 0.08), 0 4px 10px -2px rgba(17, 24, 39, 0.03);
+  transform: translateY(-2px);
+}
+
+/* Scrollbar clean */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BBBFBF;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #05AD98;
+}
+
+/* ========================================================================= */
+/* CONFIGURAÇÕES DE IMPRESSÃO / EXPORTAÇÃO EM PDF                            */
+/* ========================================================================= */
+@page {
+  size: A4 portrait;
+  margin: 0; /* Remove cabeçalhos e rodapés padrão do navegador (URL, data, título) */
+}
+
+@media print {
+  html, body {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Oculta tudo que não deve ser impresso */
+  header, footer, nav, .no-print, button:not(.print-include) {
+    display: none !important;
+  }
+
+  .print-clean {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Reset de backdrop do modal na impressão */
+  .print-modal-backdrop {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Folha A4 Corporativa do Relatório de Caixa */
+  .print-a4-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 16mm 16mm !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
